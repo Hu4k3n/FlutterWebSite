@@ -318,6 +318,29 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
+        Align(
+          alignment: Alignment(-0.20, -0.60),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Blog()),
+              );
+            },
+            child: Hero(
+              tag: "blog",
+              child: Container(
+                height: 75,
+                child: Lottie.network(
+                  'https://assets5.lottiefiles.com/private_files/lf30_FJSIAJ.json', //blog icon
+                  repeat: true,
+                  reverse: false,
+                  animate: true,
+                ),
+              ),
+            ),
+          ),
+        ),
       ]),
     ));
   }
@@ -489,6 +512,49 @@ class Linkedin extends StatelessWidget {
                 style: GoogleFonts.pacifico(fontSize: 15, color: Colors.white),
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Blog extends StatelessWidget {
+  const Blog({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Scaffold(
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Hero(
+                  tag: "blog",
+                  child: GestureDetector(
+                    onTap: () {
+                      html.window
+                          .open('https://kinghuraken.blogspot.com/', 'new tab');
+                    },
+                    child: Container(
+                      child: Lottie.network(
+                        'https://assets5.lottiefiles.com/private_files/lf30_FJSIAJ.json', //blog icon
+                        repeat: true,
+                        reverse: false,
+                        animate: true,
+                      ),
+                    ),
+                  ),
+                ),
+                Text(
+                  "Visit my Blogs to read my weird stories",
+                  style:
+                      GoogleFonts.pacifico(fontSize: 15, color: Colors.white),
+                )
+              ],
+            ),
           ),
         ),
       ),
