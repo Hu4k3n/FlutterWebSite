@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:html' as html;
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -23,6 +24,50 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class Designation extends StatefulWidget {
+  Designation({Key? key}) : super(key: key);
+
+  @override
+  _DesignationState createState() => _DesignationState();
+}
+
+class _DesignationState extends State<Designation> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 50,
+        width: 200,
+        child: CarouselSlider(
+          options: CarouselOptions(
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlay: true,
+              autoPlayInterval: Duration(milliseconds: 1500)),
+          items: [
+            "Software Engineer",
+            "Blender Artist",
+            "PhotoShop",
+            "Youtuber",
+            "Designer"
+          ].map((i) {
+            return Builder(
+              builder: (BuildContext context) {
+                return Container(
+                    child: Text(
+                  ' $i ',
+                  style:
+                      GoogleFonts.pacifico(fontSize: 15, color: Colors.white),
+                ));
+              },
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+}
+
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
 
@@ -30,57 +75,62 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Hi, I'm Arjun Syam",
-                style: GoogleFonts.pacifico(fontSize: 25, color: Colors.white)),
-            Text("Welcome to My Humble Website",
-                style: GoogleFonts.pacifico(fontSize: 25, color: Colors.white)),
-            GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyHomePage()),
-                Navigator.of(context).push(_createRoute());
-              },
-              child: Hero(
-                tag: "home",
-                child: Container(
-                  height: 250,
-                  child: Lottie.network(
-                    'https://assets9.lottiefiles.com/packages/lf20_T0oGsn.json', //click here
-                    repeat: true,
-                    reverse: true,
-                    animate: true,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Hi, I'm Arjun Syam",
+                  style:
+                      GoogleFonts.pacifico(fontSize: 25, color: Colors.white)),
+              Designation(),
+              Text("Welcome to My Humble Website",
+                  style:
+                      GoogleFonts.pacifico(fontSize: 25, color: Colors.white)),
+              GestureDetector(
+                onTap: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => MyHomePage()),
+                  Navigator.of(context).push(_createRoute());
+                },
+                child: Hero(
+                  tag: "home",
+                  child: Container(
+                    height: 250,
+                    child: Lottie.network(
+                      'https://assets9.lottiefiles.com/packages/lf20_T0oGsn.json', //click here
+                      repeat: true,
+                      reverse: true,
+                      animate: true,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Text(
-              "Press to Start",
-              style: GoogleFonts.pacifico(fontSize: 25, color: Colors.white),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.mail, color: Colors.white),
-                Text(
-                  " arjun.syam23@gmail.com",
-                  style:
-                      GoogleFonts.pacifico(fontSize: 15, color: Colors.white),
-                ),
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                "\nPowered by Flutter \n Arjun 'Huraken' Syam \n August 2021",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.lato(fontSize: 10, color: Colors.white),
+              Text(
+                "Press to Start",
+                style: GoogleFonts.pacifico(fontSize: 25, color: Colors.white),
               ),
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.mail, color: Colors.white),
+                  Text(
+                    " arjun.syam23@gmail.com",
+                    style:
+                        GoogleFonts.pacifico(fontSize: 15, color: Colors.white),
+                  ),
+                ],
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  "\nPowered by Flutter \n Arjun 'Huraken' Syam \n August 2021",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(fontSize: 10, color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -280,27 +330,34 @@ class Youtube extends StatelessWidget {
     return Container(
       child: Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Hero(
-                tag: "youtube",
-                child: GestureDetector(
-                  onTap: () {
-                    html.window
-                        .open('https://www.youtube.com/c/Huraken', 'new tab');
-                  },
-                  child: Container(
-                    child: Lottie.network(
-                      'https://assets10.lottiefiles.com/packages/lf20_3fuksula.json', //youtube icon
-                      repeat: true,
-                      reverse: true,
-                      animate: true,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Hero(
+                  tag: "youtube",
+                  child: GestureDetector(
+                    onTap: () {
+                      html.window
+                          .open('https://www.youtube.com/c/Huraken', 'new tab');
+                    },
+                    child: Container(
+                      child: Lottie.network(
+                        'https://assets10.lottiefiles.com/packages/lf20_3fuksula.json', //youtube icon
+                        repeat: true,
+                        reverse: true,
+                        animate: true,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+                Text(
+                  "Visit my Youtube channel to see my latest uploads",
+                  style:
+                      GoogleFonts.pacifico(fontSize: 15, color: Colors.white),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -315,30 +372,37 @@ class Instagram extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Hero(
-                tag: "instagram",
-                child: GestureDetector(
-                  onTap: () {
-                    html.window.open(
-                        'https://www.instagram.com/huraken._.x_x/', 'new tab');
-                  },
-                  child: Container(
-                    height: 500,
-                    child: Lottie.network(
-                      'https://assets10.lottiefiles.com/packages/lf20_miwpcyh5.json', //instagram icon
-                      repeat: true,
-                      reverse: true,
-                      animate: true,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Hero(
+                  tag: "instagram",
+                  child: GestureDetector(
+                    onTap: () {
+                      html.window.open(
+                          'https://www.instagram.com/huraken._.x_x/',
+                          'new tab');
+                    },
+                    child: Container(
+                      height: 500,
+                      child: Lottie.network(
+                        'https://assets10.lottiefiles.com/packages/lf20_miwpcyh5.json', //instagram icon
+                        repeat: true,
+                        reverse: true,
+                        animate: true,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+              Text(
+                "Visit my Instagram to see my latest artwork or updates",
+                style: GoogleFonts.pacifico(fontSize: 15, color: Colors.white),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -352,29 +416,35 @@ class Github extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Hero(
-                tag: "github",
-                child: GestureDetector(
-                  onTap: () {
-                    html.window.open('https://github.com/Hu4k3n', 'new tab');
-                  },
-                  child: Container(
-                    height: 500,
-                    child: Lottie.network(
-                      'https://assets5.lottiefiles.com/packages/lf20_dgBN4P.json', //github icon
-                      repeat: true,
-                      reverse: false,
-                      animate: true,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Hero(
+                  tag: "github",
+                  child: GestureDetector(
+                    onTap: () {
+                      html.window.open('https://github.com/Hu4k3n', 'new tab');
+                    },
+                    child: Container(
+                      height: 500,
+                      child: Lottie.network(
+                        'https://assets5.lottiefiles.com/packages/lf20_dgBN4P.json', //github icon
+                        repeat: true,
+                        reverse: false,
+                        animate: true,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+              Text(
+                "Visit my Github to see updates regarding my Projects",
+                style: GoogleFonts.pacifico(fontSize: 15, color: Colors.white),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -388,31 +458,37 @@ class Linkedin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Hero(
-                tag: "linkedin",
-                child: GestureDetector(
-                  onTap: () {
-                    html.window.open(
-                        'https://www.linkedin.com/in/arjun-syam-9b1b961a0/',
-                        'new tab');
-                  },
-                  child: Container(
-                    height: 500,
-                    child: Lottie.network(
-                      'https://assets6.lottiefiles.com/packages/lf20_atjsyyed.json', //linkedin icon
-                      repeat: true,
-                      reverse: true,
-                      animate: true,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Hero(
+                  tag: "linkedin",
+                  child: GestureDetector(
+                    onTap: () {
+                      html.window.open(
+                          'https://www.linkedin.com/in/arjun-syam-9b1b961a0/',
+                          'new tab');
+                    },
+                    child: Container(
+                      height: 500,
+                      child: Lottie.network(
+                        'https://assets6.lottiefiles.com/packages/lf20_atjsyyed.json', //linkedin icon
+                        repeat: true,
+                        reverse: true,
+                        animate: true,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+              Text(
+                "Visit my LinkedIn Profile for my Professional endeavours",
+                style: GoogleFonts.pacifico(fontSize: 15, color: Colors.white),
+              )
+            ],
+          ),
         ),
       ),
     );
