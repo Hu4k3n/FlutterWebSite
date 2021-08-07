@@ -35,14 +35,14 @@ class SplashPage extends StatelessWidget {
           children: [
             Text("Hi, I'm Arjun Syam",
                 style: GoogleFonts.pacifico(fontSize: 25, color: Colors.white)),
-            Text("Welcome to My Page",
+            Text("Welcome to My Humble Website",
                 style: GoogleFonts.pacifico(fontSize: 25, color: Colors.white)),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => MyHomePage()),
+                Navigator.of(context).push(_createRoute());
               },
               child: Hero(
                 tag: "home",
@@ -58,7 +58,7 @@ class SplashPage extends StatelessWidget {
               ),
             ),
             Text(
-              "Press to Start :)",
+              "Press to Start",
               style: GoogleFonts.pacifico(fontSize: 25, color: Colors.white),
             ),
             Row(
@@ -75,7 +75,8 @@ class SplashPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "Powered by Flutter by Arjun 'Huraken' Syam 2021",
+                "\nPowered by Flutter \n Arjun 'Huraken' Syam \n August 2021",
+                textAlign: TextAlign.center,
                 style: GoogleFonts.lato(fontSize: 10, color: Colors.white),
               ),
             ),
@@ -84,6 +85,24 @@ class SplashPage extends StatelessWidget {
       ),
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => MyHomePage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
 
 class MyHomePage extends StatefulWidget {
