@@ -43,7 +43,8 @@ class _DesignationState extends State<Designation> {
               enableInfiniteScroll: true,
               reverse: false,
               autoPlay: true,
-              autoPlayInterval: Duration(milliseconds: 1500)),
+              scrollDirection: Axis.horizontal,
+              autoPlayInterval: Duration(milliseconds: 2000)),
           items: [
             "Software Engineer",
             "Blender Artist",
@@ -272,7 +273,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         Align(
-          alignment: Alignment(0, -0.60),
+          alignment: Alignment(0.25, -0.60),
           child: GestureDetector(
             onTap: () {
               Navigator.push(
